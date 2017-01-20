@@ -287,6 +287,11 @@ module RubyXL
         }
       }
 
+      (merged_cells || []).each do |cell|
+        next unless cell.ref.row_range.min >= row_index
+        cell.ref.instance_variable_set(:"@row_range", Range.new(cell.ref.row_range.min + 1, cell.ref.row_range.max + 1))
+      end
+
       return new_row
     end
 
