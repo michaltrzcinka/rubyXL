@@ -693,6 +693,12 @@ describe RubyXL::Worksheet do
         }
       }
     end
+
+    it 'should shift merged cells down' do
+      @worksheet.merge_cells(3, 0, 5, 3)
+      @worksheet.insert_row(1)
+      expect(@worksheet.merged_cells[0].ref.row_range).to eq( (4..6) )
+    end
   end
 
   describe '.delete_column' do
