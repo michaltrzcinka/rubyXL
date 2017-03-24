@@ -688,8 +688,9 @@ module RubyXL
       last_nonempty_column = 0
 
       if sheet_data then
-        sheet_data.rows.compact!
         sheet_data.rows.each_with_index { |row, row_index|
+          next if row.nil?
+
           first_nonempty_cell = nil
           last_nonempty_cell = 0
 
